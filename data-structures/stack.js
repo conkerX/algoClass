@@ -52,12 +52,19 @@ What's the time complexity?
 
 function Stack(capacity) {
   // implement me...
+  this.capacity = capacity;
   this.storage = {};
   this.count = 0;
 }
 
 Stack.prototype.push = function(value) {
   // implement me...
+  if (this.count === this.capacity) {
+    console.log(
+      "Max capacity already reached. Remove an element before adding a new one."
+    );
+  }
+
   this.storage[this.count] = value;
   this.count++;
 
@@ -95,6 +102,38 @@ Stack.prototype.count = function() {
   return this.count;
 };
 // Time complexity:
+
+Stack.prototype.contains = function(value) {
+  for (var key in this.storage) {
+    if (this.storage[key] === value) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+Stack.prototype.until = function(value) {
+  var haveSeenValue = false;
+  var popsAway = 0;
+
+  for (key in this.storage) {
+    if (this.storage[key] === value) {
+      haveSeenValue = true;
+    }
+
+    if (haveSeenValue) {
+      popsAway++;
+    }
+  }
+
+  if (haveSeenValue) {
+    return popsAway;
+  } else if (!haveSeenValue) {
+    console.log("The value you seek is not present.");
+    return;
+  }
+};
 
 /*
 *** Exercises:
