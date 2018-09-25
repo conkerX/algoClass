@@ -1,4 +1,13 @@
 //1. Write a function that loops through the numbers n down to 0. If you haven't done so try using a while loop to do this.
+function loop(n) {
+  if (n === 0) {
+    console.log("complete");
+    return;
+  } else {
+    console.log("number: ", n);
+    return loop(n - 1);
+  }
+}
 
 //2. Next, try looping just like above except using recursion
 
