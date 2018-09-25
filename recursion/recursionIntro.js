@@ -42,6 +42,56 @@ function recursionExponent(base, expo) {
   }
 }
 
-//5. Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value into by num and returns an array of the values.
+//5. Write a function 'recursiveMultiplier' that takes two arguments, 'arr and num', and multiplies each arr value by num and returns an array of the values.
+function recursiveMultiplierWithInnerRecursion(arr, num) {
+  var result = [];
+
+  var innerRecursion = function(arr, num) {
+    if (!arr.length) {
+      return result;
+    } else {
+      result.push(arr[0] * num);
+      return innerRecursion(arr.slice(1), num, result);
+    }
+  };
+
+  innerRecursion(arr, num);
+  return result;
+}
+
+// pure recursion
+function recursiveMultiplier(arr, num, result) {
+  if (!arr.length) {
+    return result;
+  } else {
+    result.push(arr[0] * num);
+    return recursiveMultiplier(arr.slice(1), num, result);
+  }
+}
 
 //6. Write a function 'recursiveReverse' that takes an array and uses recursion to return its contents in reverse
+function recursiveReverseWithInnerRecursion(array) {
+  var result = [];
+
+  var innerRecursion = function(array) {
+    if (!array.length) {
+      return;
+    } else {
+      result.unshift(array.slice(0, 1)[0]);
+      return innerRecursion(array.slice(1));
+    }
+  };
+
+  innerRecursion(array);
+  return result;
+}
+
+// pure recursion
+function recursiveReverse(array, result) {
+  if (!array.length) {
+    return result;
+  } else {
+    result.unshift(array.slice(0, 1)[0]);
+    return recursiveReverse(array.slice(1), result);
+  }
+}
